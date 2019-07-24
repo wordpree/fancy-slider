@@ -1,0 +1,105 @@
+//fancy slider theme 
+
+$url: 'fonts';
+$arrow-prev: "\ea40";
+$arrow-next: "\ea3c";
+
+$icon-map: (
+	/* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important,
+    speak: none,
+    font-style: normal,
+    font-weight: normal,
+    font-variant: normal,
+    text-transform: none,
+    line-height: 1,
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased,
+    -moz-osx-font-smoothing: grayscale,
+);
+
+$arrow-map: (
+    position:absolute,
+	top:50%,
+	transform:translateY(-50%),
+	color: transparent,
+	background-color: transparent,
+);
+
+$arrow-pseudo-map: (
+    color:#e1e1e1,
+	font-size:1.5em,
+);
+
+$dots-map: (
+    position:absolute,
+	right:0,
+	bottom:0,
+	li : ( 
+		display:inline-block,
+		border-left:1px solid #FFF,
+		),
+);
+
+@mixin print($maps) {
+
+    @each $key,$value in $maps {
+
+    	@if type-of($value) == 'map' {
+    		#{$key} {
+				@each $key-in ,$value-in in $value {
+					#{$key-in}: $value-in
+				}
+    		}		    
+    	} @else {
+    		#{$key}: $value
+    	}	
+    }
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('#{$url}/icomoon.eot?816ccu');
+  src:  url('#{$url}/icomoon.eot?816ccu#iefix') format('embedded-opentype'),
+    url('#{$url}/icomoon.ttf?816ccu') format('truetype'),
+    url('#{$url}/icomoon.woff?816ccu') format('woff'),
+    url('#{$url}/icomoon.svg?816ccu#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.fancy-slider {
+	position:relative;
+
+	.slick-arrow {
+		@include print($arrow-map);
+		&::before{
+			@include print($icon-map);
+			@include print($arrow-pseudo-map);
+		}
+
+	}
+
+	.slick-prev {
+
+	    &::before{
+	    	content:$arrow-prev;	    	
+	    }
+	    z-index:99;
+	    left:0;
+    }
+
+    .slick-next {
+
+	    &::before{
+	    	content:$arrow-next;
+	    }
+	    right:0;
+    }
+
+	.slick-dots {
+		@include print($dots-map);
+	}
+
+}

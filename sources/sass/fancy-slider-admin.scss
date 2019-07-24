@@ -1,0 +1,247 @@
+
+/* fancySlider settings page style */
+
+$breakpoints: (
+	'large' : '(min-width:1024px)',
+	'medium': '(min-width:960px)',
+	'small' : '(min-width:480px)',
+	'e-small': '(min-width:320px)',
+);
+
+$invalid-map: (
+	visibility:hidden,
+    position:absolute,
+    background-color:rgba(218,218,218,0.8),
+    display:inline-block,
+    padding:0.3em 1em,
+    transform: translate(0%, -150%),
+    color:#000,
+    text-align:center,
+    border-radius:5px,
+    box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.2),
+);
+
+$invalid-after-map: (
+    position:absolute,
+	content:'',
+	display:block,
+	border-style: solid,
+	border-width:15px,
+    transform:translate(70%),
+	border-color:rgba(218,218,218,0.8) transparent transparent transparent,
+);
+
+$new-slider: (
+    height: 175px,
+	width: 255px,
+	background: #248AAF,
+	position: relative,
+	margin: 0 auto,
+	border-radius: 10px,
+	border: 1px solid #1A708F,
+);
+
+$new-slider-a: (
+    width: 100%,
+	height: 100%,
+	display: block,	
+	transition: 0.6s background,
+	border-radius: 10px,
+);
+
+$new-slider-a-before: (
+	content: '\002B',
+	display: block,
+	font-size: 4rem,
+	position: absolute,
+	top: 50%,
+	left: 50%,
+	transform: translate(-50%,-50%),
+	color: #fff,
+);
+
+$ui-dialog: (
+	position: fixed,
+	background: white,
+	border: solid 1px #CDCDCD,
+	outline: none,
+	z-index: 9999,
+	padding: 0,
+	min-width: 850px,
+);
+
+$ui-widget-overlay :(
+	background: rgba(12, 12, 12, 0.8) !important,
+    opacity: 1 !important,
+    z-index: 99999 !important,
+);
+
+@mixin respond-to($handle){
+
+	@if map-has-key($breakpoints,$handle) {
+	    $value:map-get($breakpoints,$handle);
+	    @media only screen and #{$value} {
+		    @content;
+	    }
+	} @else {
+	  @warn 'Unknow `#{$handle}` in $breakpoint.';
+	}
+}
+
+@mixin print($handle){
+	@each $key,$value in $handle {
+		@if type-of($value) == 'map' {
+		    #{$value} {
+			    @each $key-in,$value-in in $value {
+			    	#{$key-in}:$value-in;
+			    }
+		    }
+		} @else {
+		    #{$key}:$value;
+		}
+	}
+}
+
+@keyframes new-slider {
+	0% { transform:translate(-50%,-50%); }
+	10% { transform:translate(-50%,-45%); }
+	30% { transform:translate(-50%,-55%); }
+	50% { transform:translate(-50%,-48%); }
+	70% { transform:translate(-50%,-52%); }
+	100% { transform:translate(-50%,-51%); }
+}
+
+@keyframes image-scale {
+	0% { transform:scale(1); }
+	10% { transform:scale(1.02); }
+	30% { transform:scale(1.03); }
+	50% { transform:scale(1.02); }
+	70% { transform:scale(1.01); }
+	100% { transform:translate(1); }
+}
+
+* {
+	box-sizing:border-box;	
+}
+
+.wrap {
+	.form-table {
+		position:relative;
+		li {
+			// display:inline-block;
+            .invalid{
+            	@include print($invalid-map);
+            	&::after {
+            		@include print($invalid-after-map);
+            	}//after,popup arrow shap
+            } //invalid popup text area
+
+            .activate{
+				visibility:visible;
+            } //activate
+
+            input{
+            	max-width:50%;
+            	display:inline-block;
+            }//input
+		} //li
+
+		ul + span {
+			font-style:italic;
+		} //ul+span
+	} //form-table
+
+} //wrap
+
+.slider-container {	
+	margin-top:2em;
+	.new-slider {
+		@include print($new-slider);
+		a {
+			@include print($new-slider-a);
+			&:hover {
+			    background:#1E7899;		    	    
+			}
+			&:hover::before {
+				animation: new-slider 1s linear;
+			}
+			&::before {
+				@include print($new-slider-a-before);
+			}
+		}
+	}
+}
+
+.ui-dialog {
+	@include print($ui-dialog);
+}
+.ui-widget-overlay {
+	@include print($ui-widget-overlay);
+}
+
+.fs-image-upload {
+	display:block;
+	border:1px groove #EAEAEA;
+	cursor:pointer;
+	width:130px;
+	height:105px;
+	margin:1em;
+	position:relative;
+	&:hover .plus::before {
+		transform: translate(-50%,-50%) rotate(45deg);
+	}
+	&:hover .title {
+		background: rgba(0, 93, 134, 0.9);;
+	}
+	.plus {
+		&::before {
+			content: '\002B';
+			display: block;
+			font-size: 2.5rem;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			color: #bbb;
+		}
+	}
+	.title {
+		position: absolute;
+		bottom:0px;
+		text-align:center;
+		display:block;
+		width:100%;
+		background: rgba(0, 93, 134, 1);
+		border-top:1px groove #EAEAEA;
+	}
+}
+div.ui-widget-header  {
+	background: #4A86B0;
+	box-shadow:1px 2px 1px 1px #447EA6;
+	border:none;
+    color:#E9FFF1;
+}
+.fs-image-preview {
+	li {
+		display:inline-block;
+		margin-left:0.8em;
+		cursor:pointer;
+		img {
+			position:relative;
+			display:block;
+			&::after {
+				display:table;
+				content:'';
+			    position:absolute;
+			    top:0;
+			    bottom:0;
+			    left:0;
+			    right:0;
+			    background:black;
+			}	
+			&:hover {
+				animation: image-scale 1.2s linear;
+		    }
+		}			
+	}
+}

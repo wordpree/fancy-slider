@@ -1,0 +1,271 @@
+/* fancySlider settings page style */
+@-webkit-keyframes new-slider {
+  0% {
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  10% {
+    -webkit-transform: translate(-50%, -45%);
+            transform: translate(-50%, -45%);
+  }
+  30% {
+    -webkit-transform: translate(-50%, -55%);
+            transform: translate(-50%, -55%);
+  }
+  50% {
+    -webkit-transform: translate(-50%, -48%);
+            transform: translate(-50%, -48%);
+  }
+  70% {
+    -webkit-transform: translate(-50%, -52%);
+            transform: translate(-50%, -52%);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -51%);
+            transform: translate(-50%, -51%);
+  }
+}
+@keyframes new-slider {
+  0% {
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  10% {
+    -webkit-transform: translate(-50%, -45%);
+            transform: translate(-50%, -45%);
+  }
+  30% {
+    -webkit-transform: translate(-50%, -55%);
+            transform: translate(-50%, -55%);
+  }
+  50% {
+    -webkit-transform: translate(-50%, -48%);
+            transform: translate(-50%, -48%);
+  }
+  70% {
+    -webkit-transform: translate(-50%, -52%);
+            transform: translate(-50%, -52%);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -51%);
+            transform: translate(-50%, -51%);
+  }
+}
+@-webkit-keyframes image-scale {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  30% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  50% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  70% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  100% {
+    -webkit-transform: translate(1);
+            transform: translate(1);
+  }
+}
+@keyframes image-scale {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  10% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  30% {
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
+  }
+  50% {
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  70% {
+    -webkit-transform: scale(1.01);
+            transform: scale(1.01);
+  }
+  100% {
+    -webkit-transform: translate(1);
+            transform: translate(1);
+  }
+}
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrap .form-table {
+  position: relative;
+}
+.wrap .form-table li .invalid {
+  visibility: hidden;
+  position: absolute;
+  background-color: rgba(218, 218, 218, 0.8);
+  display: inline-block;
+  padding: 0.3em 1em;
+  -webkit-transform: translate(0%, -150%);
+          transform: translate(0%, -150%);
+  color: #000;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+.wrap .form-table li .invalid::after {
+  position: absolute;
+  content: "";
+  display: block;
+  border-style: solid;
+  border-width: 15px;
+  -webkit-transform: translate(70%);
+          transform: translate(70%);
+  border-color: rgba(218, 218, 218, 0.8) transparent transparent transparent;
+}
+.wrap .form-table li .activate {
+  visibility: visible;
+}
+.wrap .form-table li input {
+  max-width: 50%;
+  display: inline-block;
+}
+.wrap .form-table ul + span {
+  font-style: italic;
+}
+
+.slider-container {
+  margin-top: 2em;
+}
+.slider-container .new-slider {
+  height: 175px;
+  width: 255px;
+  background: #248AAF;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid #1A708F;
+}
+.slider-container .new-slider a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -webkit-transition: 0.6s background;
+  transition: 0.6s background;
+  border-radius: 10px;
+}
+.slider-container .new-slider a:hover {
+  background: #1E7899;
+}
+.slider-container .new-slider a:hover::before {
+  -webkit-animation: new-slider 1s linear;
+          animation: new-slider 1s linear;
+}
+.slider-container .new-slider a::before {
+  content: "+";
+  display: block;
+  font-size: 4rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.ui-dialog {
+  position: fixed;
+  background: white;
+  border: solid 1px #CDCDCD;
+  outline: none;
+  z-index: 9999;
+  padding: 0;
+  min-width: 850px;
+}
+
+.ui-widget-overlay {
+  background: rgba(12, 12, 12, 0.8) !important;
+  opacity: 1 !important;
+  z-index: 99999 !important;
+}
+
+.fs-image-upload {
+  display: block;
+  border: 1px groove #EAEAEA;
+  cursor: pointer;
+  width: 130px;
+  height: 105px;
+  margin: 1em;
+  position: relative;
+}
+.fs-image-upload:hover .plus::before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+}
+.fs-image-upload:hover .title {
+  background: rgba(0, 93, 134, 0.9);
+}
+.fs-image-upload .plus::before {
+  content: '\002B';
+  display: block;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #bbb;
+}
+.fs-image-upload .title {
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  background: #005d86;
+  border-top: 1px groove #EAEAEA;
+}
+
+div.ui-widget-header {
+  background: #4A86B0;
+  -webkit-box-shadow: 1px 2px 1px 1px #447EA6;
+          box-shadow: 1px 2px 1px 1px #447EA6;
+  border: none;
+  color: #E9FFF1;
+}
+
+.fs-image-preview li {
+  display: inline-block;
+  margin-left: 0.8em;
+  cursor: pointer;
+}
+.fs-image-preview li img {
+  position: relative;
+  display: block;
+}
+.fs-image-preview li img::after {
+  display: table;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+}
+.fs-image-preview li img:hover {
+  -webkit-animation: image-scale 1.2s linear;
+          animation: image-scale 1.2s linear;
+}
